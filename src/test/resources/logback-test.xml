@@ -2,25 +2,25 @@
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%msg%n</pattern>
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>target/karate.log</file>
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <!-- Thymeleaf loglarını sadece ERROR seviyesinde göster -->
-    <logger name="org.thymeleaf" level="ERROR"/>
-    <!-- Karate loglarını INFO seviyesine düşür -->
+    <!-- Karate tüm logları göster -->
     <logger name="com.intuit.karate" level="INFO"/>
+    <logger name="com.intuit.karate.core" level="INFO"/>
+    <logger name="com.intuit.karate.http" level="INFO"/>
 
+    <!-- Diğer logları kapat -->
+    <logger name="org.apache.http" level="OFF"/>
+    <logger name="org.apache.http.wire" level="OFF"/>
+    <logger name="org.apache.maven" level="OFF"/>
+    <logger name="org.junit" level="OFF"/>
+    <logger name="org.slf4j" level="OFF"/>
+    <logger name="ch.qos.logback" level="OFF"/>
 
+    <!-- Root logger'ı INFO seviyesinde tut -->
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

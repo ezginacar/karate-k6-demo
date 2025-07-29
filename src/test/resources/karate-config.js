@@ -1,9 +1,8 @@
 function fn() {
-  java.lang.System.setProperty('logback.configurationFile', 'src/test/resources/logback-test.xml');
 
   var env = karate.env;
   if (!env) {
-      env = 'test'; // default değer
+      env = 'test'; 
     }
     karate.log('Test environment :', env);
 
@@ -13,6 +12,8 @@ function fn() {
     accessToken : 'e23c998dac52c53e201eb580532f4dc77690afb1a539eb2c068ed79307589c21',
     apiKey : 'e2f4dc48ca5fe1543d15bf268ec6832a',
     baseUrl: 'https://api.trello.com',
+    cleanup: null, 
+
 
     //endpoints
     PostCreateBoard : '/1/boards/',
@@ -31,11 +32,16 @@ function fn() {
   }
 
    karate.configure('headers', karate.read('classpath:header.js'));
+   
 
    karate.configure('connectTimeout', 10000);
    karate.configure('readTimeout', 5000);
 
-   karate.configure('report',{ showLog: true, showAllSteps: false })
+   karate.configure('report',{ showLog: true, showAllSteps: true })
+   karate.configure('logPrettyRequest', true);
+   karate.configure('logPrettyResponse', true);
+   karate.configure('printEnabled', true);
+
 
   return config;
  }
