@@ -1,6 +1,8 @@
 function fn() {
     var header ={
-        'Accept' :  'application/json'
+        'Accept' :  'application/json',
+        'Content-Type': 'application/json',
+
     }
     return header;
 }
