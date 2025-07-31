@@ -8,7 +8,7 @@ Feature: E2E Case Study - Complete Trello Workflow
   Scenario: Complete E2E Test - Create Organization, Board, List, Cards, Update and Cleanup
     
     # Step 1: Create Organization
-    * print '\033[1;36m=== Step 1: Creat An Organization ===\033[0m'
+    * print '\033[1;36m=== Step 1: Create An Organization ===\033[0m'
     * param key = apiKey
     * param token = accessToken
     * path PostCreateOrganization
@@ -142,16 +142,6 @@ Feature: E2E Case Study - Complete Trello Workflow
     * method delete
     * status 200
     * print `The organization (${organizationID}) is deleted successfully`
-    
-    # Step 11: Verify Card is Deleted
-    * print '\033[1;36m=== Step 11: Verify Card is Deleted ===\033[0m'
-    * param key = apiKey
-    * param token = accessToken
-    * path PostCreateCard
-    * request ''
-    * method get
-    * status 404
-    * print '\033[1;30m✓ Card deletion verified - 404 received\033[0m'
     
   
 

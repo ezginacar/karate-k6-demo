@@ -5,14 +5,17 @@ function fn() {
       env = 'test'; 
     }
     karate.log('Test environment :', env);
-
+ 
 
   var config = {
     env: env,
-    accessToken : 'e23c998dac52c53e201eb580532f4dc77690afb1a539eb2c068ed79307589c21',
-    apiKey : 'e2f4dc48ca5fe1543d15bf268ec6832a',
     baseUrl: 'https://api.trello.com',
-    cleanup: null, 
+    accessToken: karate.properties['TRELLO_ACCESS_TOKEN'] || 'your-access-token',
+    apiKey: karate.properties['TRELLO_API_KEY'] || 'your-api-key',
+
+
+
+    
 
 
     //endpoints
@@ -37,10 +40,14 @@ function fn() {
    karate.configure('connectTimeout', 10000);
    karate.configure('readTimeout', 5000);
 
-   karate.configure('report',{ showLog: true, showAllSteps: true })
+   // Debug modu için
    karate.configure('logPrettyRequest', true);
    karate.configure('logPrettyResponse', true);
    karate.configure('printEnabled', true);
+   karate.configure('report', { showLog: true, showAllSteps: true });
+
+
+
 
 
   return config;
