@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  karate-tests:
+    build: .
+    container_name: karate-k6-demo
+    volumes:
+      - .:/app
+      - maven-repo:/root/.m2
+    # Dockerfile'daki CMD kullanılacak
+    restart: "no"
+
+volumes:
+  maven-repo:
+    driver: local

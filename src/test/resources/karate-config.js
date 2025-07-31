@@ -37,10 +37,14 @@ function fn() {
    karate.configure('connectTimeout', 10000);
    karate.configure('readTimeout', 5000);
 
-   karate.configure('report',{ showLog: true, showAllSteps: true })
+   // Debug modu için
    karate.configure('logPrettyRequest', true);
    karate.configure('logPrettyResponse', true);
    karate.configure('printEnabled', true);
+   karate.configure('report', { showLog: true, showAllSteps: true });
+
+
+
 
 
   return config;
