@@ -7,6 +7,9 @@ services:
     volumes:
       - .:/app
       - maven-repo:/root/.m2
+    environment:
+      - TRELLO_ACCESS_TOKEN=${TRELLO_ACCESS_TOKEN}
+      - TRELLO_API_KEY=${TRELLO_API_KEY}
     # Dockerfile'daki CMD kullanılacak
     restart: "no"
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!-- Console Appender -->
+
+    <!-- Konsol Appender -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Tüm Loglar Dosyası -->
+    <!-- Dosya Appender -->
     <appender name="ALL_LOGS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>target/karate-reports/all-logs.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -15,36 +16,24 @@
             <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder>
-       <!--     <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [%logger{36}] - %msg%n</pattern> -->
-           <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [%logger{36}] [%X{feature}:%X{scenario}] - %msg%n</pattern>
-
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [%logger{36}] [%X{feature}:%X{scenario}] - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Karate general logs -->
-    <logger name="com.intuit.karate" level="INFO"/>
-    <logger name="com.intuit.karate.core" level="INFO"/>
-    
-    <!-- HTTP Request/Response logs - Tüm HTTP loglarını yakala -->
-    <logger name="com.intuit.karate.http" level="DEBUG" additivity="false">
-        <appender-ref ref="ALL_LOGS_FILE"/>
-    </logger>
-    
-    <!-- Karate'nin tüm HTTP loglarını yakala -->
+    <!-- Karate’nin print() ve genel logları konsolda da görünsün -->
     <logger name="com.intuit.karate" level="DEBUG" additivity="false">
         <appender-ref ref="ALL_LOGS_FILE"/>
+        <appender-ref ref="STDOUT"/>
     </logger>
 
-    <!-- Diğer logları kapat -->
-    <logger name="org.apache.http" level="OFF"/>
-    <logger name="org.apache.http.wire" level="OFF"/>
-    <logger name="org.apache.maven" level="OFF"/>
-    <logger name="org.junit" level="OFF"/>
-    <logger name="org.slf4j" level="OFF"/>
-    <logger name="ch.qos.logback" level="OFF"/>
-    <logger name="org.thymeleaf" level="OFF"/>
+    <logger name="com.intuit.karate.core" level="DEBUG" />
 
-    <!-- Root logger -->
+    <!-- HTTP logları sadece dosyada, konsola hiç gitmesin -->
+    <logger name="com.intuit.karate.http" level="OFF" additivity="false">
+        <appender-ref ref="ALL_LOGS_FILE"/>
+    </logger>
+
+    <!-- Root sadece INFO -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="ALL_LOGS_FILE"/>

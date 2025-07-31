@@ -40,9 +40,9 @@ docker build -t karate-k6-demo .
 docker run --rm karate-k6-demo
 
 # Other Maven commands
-docker run --rm karate-k6-demo clean install
-docker run --rm karate-k6-demo clean compile
-docker run --rm karate-k6-demo dependency:tree
+docker run --rm karate-k6-demo mvn clean install
+docker run --rm karate-k6-demo mvn clean compile
+docker run --rm karate-k6-demo mvn dependency:tree
 ```
 
 ## 🔧 Manual Setup
@@ -114,7 +114,7 @@ Karate-K6-Demo/
 - **Card** >Create and update
 - **Resource cleanup**  (Automatic cleanup when the test case failed)
 
-### Test Özellikleri
+### Test Features
 - ✅ **Random data generation** (JavaFaker)
 - ✅ **Resource tracking** (Automatic cleanup)
 - ✅ **Clean logging** (Clean output in console)
@@ -122,7 +122,7 @@ Karate-K6-Demo/
 - ✅ **Docker support** (platform independent)
 - ✅ **Parallel execution**  (support)
 
-## 🔑 Konfigürasyon
+## 🔑 Configuration
 
 ### API Keys
 Trello API keys> `src/test/resources/karate-config.js`;
@@ -141,15 +141,15 @@ var config = {
 export TRELLO_API_KEY=your-api-key
 export TRELLO_ACCESS_TOKEN=your-access-token
 
-# Manuel instaalion
+# Manual installation
 export JAVA_HOME=/path/to/java11
 export MAVEN_OPTS="-Xmx512m"
 ```
 
 ## 📊 Test Reports
 
-- **HTML Rapor**: `target/karate-reports/karate-summary.html`
-- **JSON Rapor**: `target/karate-reports/all-logs.log`
+- **HTML Report**: `target/karate-reports/karate-summary.html`
+- **JSON Report**: `target/karate-reports/all-logs.log`
 - **All Logs**: `target/karate-reports/karate-repors`
 
 

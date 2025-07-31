@@ -5,13 +5,17 @@ function fn() {
       env = 'test'; 
     }
     karate.log('Test environment :', env);
-
+ 
 
   var config = {
     env: env,
     baseUrl: 'https://api.trello.com',
-    accessToken: karate.properties['trello.access.token'] || 'your-access-token',
-    apiKey: karate.properties['trello.api.key'] || 'your-api-key',
+    accessToken: karate.properties['TRELLO_ACCESS_TOKEN'] || 'your-access-token',
+    apiKey: karate.properties['TRELLO_API_KEY'] || 'your-api-key',
+
+
+
+    
 
 
     //endpoints
