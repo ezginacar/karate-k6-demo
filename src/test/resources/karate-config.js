@@ -9,10 +9,9 @@ function fn() {
 
   var config = {
     env: env,
-    accessToken : 'e23c998dac52c53e201eb580532f4dc77690afb1a539eb2c068ed79307589c21',
-    apiKey : 'e2f4dc48ca5fe1543d15bf268ec6832a',
     baseUrl: 'https://api.trello.com',
-    cleanup: null, 
+    accessToken: karate.properties['trello.access.token'] || 'your-access-token',
+    apiKey: karate.properties['trello.api.key'] || 'your-api-key',
 
 
     //endpoints
