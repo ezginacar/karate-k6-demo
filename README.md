@@ -1,6 +1,6 @@
-# Karate-K6 Demo Project
+# Karate Demo Project
 
-This project is a demo that tests E2E cases and performance testing both with Karate Framework and K6.
+This project is a demo that tests E2E case with Karate Framework
 
 ## 🚀 Features
 
@@ -26,8 +26,8 @@ This project is a demo that tests E2E cases and performance testing both with Ka
 
 ### 1. Clone the project
 ```bash
-git clone https://github.com/ezginacar/karate-k6-demo.git
-cd Karate-K6-Demo
+git clone https://github.com/ezginacar/karate-trello-e2e-demo.git
+cd Karate-Demo
 ```
 
 ### 2. Run test with Docker
