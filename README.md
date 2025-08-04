@@ -36,13 +36,13 @@ cd Karate-Demo
 docker compose up --build karate-tests
 
 # Build
-docker build -t karate-k6-demo .
-docker run --rm karate-k6-demo
+docker build -t karate-e2e-demo .
+docker run --rm karate-e2e-demo
 
 # Other Maven commands
-docker run --rm karate-k6-demo mvn clean install
-docker run --rm karate-k6-demo mvn clean compile
-docker run --rm karate-k6-demo mvn dependency:tree
+docker run --rm karate-e2e-demo mvn clean install
+docker run --rm karate-e2e-demo mvn clean compile
+docker run --rm karate-e2e-demo mvn dependency:tree
 ```
 
 ## 🔧 Manual Setup
