@@ -5,29 +5,32 @@ Feature: Card operations
     Given url baseUrl
     * param key = apiKey
     * param token = accessToken
-    * def faker = call read('classpath:faker-helpers.js')
+    * def faker = call read('classpath:helpers/faker-helpers.js')
 
   @createCard
   Scenario: Create a card under the list
     * path PostCreateCard
-    * param name = karate.get('name') || faker.getCardName()
+    * param name = (typeof cardName != 'undefined' && cardName ? cardName : faker.getCardName())
     * param idList = karate.get('idList')
     * request ''
     * method post
+    * status 200
     * match $.id == "#notnull"
-    * def result = { id: $.id, name: $.name, listId: $.idList }
+    * def result = { id: '#(response.id)', name: '#(response.name)', listId: '#(response.idBList)' }
+    * print "Card created with ID:", result.id
 
   @updateCardName
   Scenario: Update card name by id and return updated card
     * def cardId = karate.get('id')
-    * def newName = karate.get('name') || faker.getCardName()
+    * def newName = (typeof cardName != 'undefined' && cardName ? cardName : faker.getCardName())
     * path PutUpdateCard.replace('${id}', cardId)
     * param name = newName
     * request ''
     * method put
     * status 200
     * match $.name == newName
-    * def result = { id: $.id, name: $.name }
+    * def result = { id: '#(response.id)', name: '#(response.name)', listId: '#(response.idBList)' }
+    * print "Card updated with new name:", #(response.name)
 
   @getCardDetails
   Scenario: Get card details
@@ -36,8 +39,8 @@ Feature: Card operations
     * request ''
     * method get
     * status 200
-    * def result = { id: $.id, name: $.name }
-
+    * def result = { id: '#(response.id)', name: '#(response.name)', listId: '#(response.idBList)' }
+    * print "Card details retrieved for ID:", response.id
 
   @deleteCard
   Scenario: Delete card by id
@@ -46,7 +49,7 @@ Feature: Card operations
     * request ''
     * method delete
     * status 200
-    * def result = { id: cardId }
+    * print `Card (#(response.id)) deleted successfully`
 
 
 

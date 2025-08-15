@@ -1,0 +1,33 @@
+Feature: Board operations
+
+  Background: Call required fields
+    Given url baseUrl
+    * param key = apiKey
+    * param token = accessToken
+    * def faker = call read('classpath:helpers/faker-helpers.js')
+
+  @createBoard
+  Scenario: Create a new board
+    * path PostCreateBoard
+    * param name = (typeof boardName != 'undefined' && boardName ? boardName : faker.getBoardName())
+     #Determine organization ID based on available parameters
+    * def orgId = (typeof idOrganization != 'undefined' && idOrganization) ? idOrganization : (typeof organizationId != 'undefined' && organizationId) ? organizationId : (typeof id != 'undefined' && id) ? id : null
+    * param idOrganization = orgId
+    * request ''
+    * method post
+    * status 200
+    * match $.id == "#notnull"
+    * def result = { id: '#(response.id)', name: '#(response.name)', organizationId: '#(response.idOrganization)' }
+    * print "Board created with ID:", result.id
+
+
+  @deleteBoard
+  Scenario: Delete board by id
+    * def boardId = karate.get('id')
+    * path DeleteBoard.replace('${id}', boardId)
+    * request ''
+    * method delete
+    * status 200
+    * def result = { id: boardId }
+    * print `Board (${boardId}) deleted successfully`
+

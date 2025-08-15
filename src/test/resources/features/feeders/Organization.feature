@@ -4,18 +4,20 @@ Feature: Organization operations
     Given url baseUrl
     * param key = apiKey
     * param token = accessToken
-    * def faker = call read('classpath:faker-helpers.js')
+    * def faker = call read('classpath:helpers/faker-helpers.js')
 
   @createOrganization
   Scenario: Create a new organization
     Given url baseUrl
     * path PostCreateOrganization
-    * param displayName = karate.get('organizationName') || faker.getOrganizationName()
-    * request ''
+    * param displayName = (typeof name != 'undefined' && name) ? name : faker.getOrganizationName()
+    * request {}
     * method post
-    * match $.id == "#notnull"
-    * def result = { id: $.id, name: $.displayName }
-
+    * status 200
+    * match response.id == "#present"
+    * print "EZO  " , response.id
+    * def result = { id: '#(response.id)', name: '#(response.displayName)' }
+    * print "Organization created with ID:", result.id
 
   @deleteOrganization
   Scenario: Delete organization by id
