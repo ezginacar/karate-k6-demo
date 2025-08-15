@@ -11,7 +11,7 @@ class TestRunner {
     void run() {
         System.out.println("Test Runner Starting...");
         Results results = Runner.path("classpath:features")
-                .tags("@caseStudy")
+                .tags("@e2e")
                 .outputCucumberJson(true)
                 .parallel(1);
 
