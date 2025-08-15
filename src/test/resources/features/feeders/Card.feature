@@ -30,7 +30,7 @@ Feature: Card operations
     * status 200
     * match $.name == newName
     * def result = { id: '#(response.id)', name: '#(response.name)', listId: '#(response.idBList)' }
-    * print "Card updated with new name:", #(response.name)
+    * print "Card updated with new name:", response.name
 
   @getCardDetails
   Scenario: Get card details
@@ -49,7 +49,7 @@ Feature: Card operations
     * request ''
     * method delete
     * status 200
-    * print `Card (#(response.id)) deleted successfully`
+    * print 'The card (' + cardId + ') is deleted successfully'
 
 
 

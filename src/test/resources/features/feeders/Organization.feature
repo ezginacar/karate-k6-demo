@@ -26,5 +26,4 @@ Feature: Organization operations
     * request ''
     * method delete
     * status 200
-    * def result = { id: organizationID }
-    * print `The organization (${organizationID}) is deleted successfully`
+    * print 'The organization (' + organizationID + ') is deleted successfully'

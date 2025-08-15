@@ -34,7 +34,7 @@ function fn() {
     config.baseUrl ='https://api.trello.com'
   }
 
-   karate.configure('headers', karate.read('classpath:header.js'));
+   karate.configure('headers', karate.read('classpath:helpers/header.js'));
    
 
    karate.configure('connectTimeout', 10000);

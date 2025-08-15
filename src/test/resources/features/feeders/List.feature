@@ -9,10 +9,9 @@ Feature: list operations
   @createList
   Scenario: Create a new list under the board
     * path PostCreateList
-    * param name = (typeof listName != 'undefined' && listName ? boardName : faker.getListName())
-    #Determine board ID based on available parameters
-    * def boardId = (typeof boardID != 'undefined' && boardID ) ? boardID : (typeof boardId != 'undefined' && boardId) ? boardId  : (typeof id != 'undefined' && id) ? id : null)
+    * def listName = (typeof listName != 'undefined' && listName ? listName : faker.getListName())
     * param idBoard = boardId
+    * param name = listName
     * request ''
     * method post
     * status 200

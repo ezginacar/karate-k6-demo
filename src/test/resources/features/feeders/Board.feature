@@ -9,10 +9,11 @@ Feature: Board operations
   @createBoard
   Scenario: Create a new board
     * path PostCreateBoard
-    * param name = (typeof boardName != 'undefined' && boardName ? boardName : faker.getBoardName())
+    * def boardName = (typeof boardName != 'undefined' && boardName ? boardName : faker.getBoardName())
      #Determine organization ID based on available parameters
     * def orgId = (typeof idOrganization != 'undefined' && idOrganization) ? idOrganization : (typeof organizationId != 'undefined' && organizationId) ? organizationId : (typeof id != 'undefined' && id) ? id : null
     * param idOrganization = orgId
+    * param name = boardName
     * request ''
     * method post
     * status 200
@@ -28,6 +29,4 @@ Feature: Board operations
     * request ''
     * method delete
     * status 200
-    * def result = { id: boardId }
-    * print `Board (${boardId}) deleted successfully`
-
+    * print 'The board (' + boardId + ') is deleted successfully'
