@@ -4,12 +4,12 @@ Feature: list operations
     Given url baseUrl
     * param key = apiKey
     * param token = accessToken
-    * def faker = call read('classpath:helpers/faker-helpers.js')
+    * def naming = call read('classpath:helpers/naming-helper.js')
 
   @createList
   Scenario: Create a new list under the board
     * path PostCreateList
-    * def listName = (typeof listName != 'undefined' && listName ? listName : faker.getListName())
+    * def listName = (typeof listName != 'undefined' && listName ? listName : naming.getStandartNaming('List'))
     * param idBoard = boardId
     * param name = listName
     * request ''

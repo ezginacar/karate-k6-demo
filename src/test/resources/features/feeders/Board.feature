@@ -4,12 +4,12 @@ Feature: Board operations
     Given url baseUrl
     * param key = apiKey
     * param token = accessToken
-    * def faker = call read('classpath:helpers/faker-helpers.js')
+    * def naming = call read('classpath:helpers/naming-helper.js')
 
   @createBoard
   Scenario: Create a new board
     * path PostCreateBoard
-    * def boardName = (typeof boardName != 'undefined' && boardName ? boardName : faker.getBoardName())
+    * def boardName = (typeof boardName != 'undefined' && boardName ? boardName : naming.getStandartNaming('Board'))
      #Determine organization ID based on available parameters
     * def orgId = (typeof idOrganization != 'undefined' && idOrganization) ? idOrganization : (typeof organizationId != 'undefined' && organizationId) ? organizationId : (typeof id != 'undefined' && id) ? id : null
     * param idOrganization = orgId

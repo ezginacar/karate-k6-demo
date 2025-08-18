@@ -5,12 +5,12 @@ Feature: Card operations
     Given url baseUrl
     * param key = apiKey
     * param token = accessToken
-    * def naming = call read('classpath:helpers/naming-helper.js')
+    * def faker = call read('classpath:helpers/faker-helpers.js')
 
   @createCard
   Scenario: Create a card under the list
     * path PostCreateCard
-    * param name = (typeof cardName != 'undefined' && cardName ? cardName : naming.getStandartNaming('Card'))
+    * param name = (typeof cardName != 'undefined' && cardName ? cardName : faker.getCardName())
     * param idList = karate.get('idList')
     * request ''
     * method post
@@ -22,7 +22,7 @@ Feature: Card operations
   @updateCardName
   Scenario: Update card name by id and return updated card
     * def cardId = karate.get('id')
-    * def newName = (typeof cardName != 'undefined' && cardName ? cardName : naming.getStandartNaming('Card'))
+    * def newName = (typeof cardName != 'undefined' && cardName ? cardName : faker.getCardName())
     * path PutUpdateCard.replace('${id}', cardId)
     * param name = newName
     * request ''
@@ -30,7 +30,7 @@ Feature: Card operations
     * status 200
     * match $.name == newName
     * def result = { id: '#(response.id)', name: '#(response.name)', listId: '#(response.idBList)' }
-    * print "Card updated with new name:", response.name
+    * print "Card updated with new name:", #(response.name)
 
   @getCardDetails
   Scenario: Get card details
@@ -49,7 +49,7 @@ Feature: Card operations
     * request ''
     * method delete
     * status 200
-    * print 'The card (' + cardId + ') is deleted successfully'
+    * print `Card (#(response.id)) deleted successfully`
 
 
 

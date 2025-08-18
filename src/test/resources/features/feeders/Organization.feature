@@ -4,13 +4,13 @@ Feature: Organization operations
     Given url baseUrl
     * param key = apiKey
     * param token = accessToken
-    * def faker = call read('classpath:helpers/faker-helpers.js')
+    * def naming = call read('classpath:helpers/naming-helper.js')
 
   @createOrganization
   Scenario: Create a new organization
     Given url baseUrl
     * path PostCreateOrganization
-    * param displayName = (typeof name != 'undefined' && name) ? name : faker.getOrganizationName()
+    * param displayName = (typeof name != 'undefined' && name) ? name : naming.getStandartNaming('Organization')
     * request {}
     * method post
     * status 200
